@@ -1,4 +1,4 @@
-{
+export const CONTENT = {
   "settings": {
     "exchangeRate": 0.02,
     "currencyLabel": { "en": "L.E", "ar": "ج.م" },
@@ -16,7 +16,7 @@
       "title": "Automotive Artistry",
       "subtitle": "Curating the world's finest super sport machines for the discerning collector.",
       "cta": "View Inventory",
-      "image": "/images/hero_silver_supercar.jpg"
+      "image": "images/hero_silver_supercar.jpg"
     },
     "collection": {
       "label": "Available Now",
@@ -71,25 +71,25 @@
                 "label": "Global Logistics",
                 "title": "White-Glove Delivery",
                 "desc": "Distance is no barrier to excellence. We offer secure, enclosed, and climate-controlled transport solutions for your acquisition. Our team manages all customs documentation and port logistics for international shipments, ensuring your vehicle arrives in pristine condition.",
-                "image": "/images/hero_silver_supercar.jpg"
+                "image": "images/hero_silver_supercar.jpg"
             },
             {
                 "label": "Preservation",
                 "title": "Performance Maintenance",
                 "desc": "Maintaining a supercar requires more than standard care; it requires specialized expertise. Our network of master technicians provides comprehensive maintenance, performance tuning, and archival-grade detailing services specifically for exotic and vintage marques.",
-                "image": "/images/porsche_911.jpg"
+                "image": "images/porsche_911.jpg"
             },
             {
                 "label": "Acquisition",
                 "title": "Bespoke Sourcing",
                 "desc": "If the car you desire isn't in our current collection, we will find it. Leveraging a global network of private collectors and off-market listings, we identify, inspect, and negotiate the acquisition of the world's most sought-after vehicles on your behalf.",
-                "image": "/images/aston_martin_dbs.jpg"
+                "image": "images/aston_martin_dbs.jpg"
             },
             {
                 "label": "Brokerage",
                 "title": "Elite Consignment",
                 "desc": "Sell your vehicle with the prestige it deserves. Our consignment program includes professional studio photography, multi-channel marketing to qualified high-net-worth buyers, and full management of inquiries and viewings at our secure gallery.",
-                "image": "/images/ferrari_sf90.jpg"
+                "image": "images/ferrari_sf90.jpg"
             }
         ],
         "cta": {
@@ -139,7 +139,7 @@
       "title": "فن السيارات",
       "subtitle": "ننتقي أرقى السيارات الرياضية الفائقة في العالم للمقتني المميز.",
       "cta": "عرض المخزون",
-      "image": "/images/hero_silver_supercar.jpg"
+      "image": "images/hero_silver_supercar.jpg"
     },
      "collection": {
       "label": "متاح الآن",
@@ -194,25 +194,25 @@
                 "label": "الخدمات اللوجستية العالمية",
                 "title": "تسليم القفاز الأبيض",
                 "desc": "المسافة ليست عائقاً أمام التميز. نحن نقدم حلول نقل آمنة ومغلقة ومكيفة لسيارتك. يدير فريقنا جميع وثائق الجمارك والخدمات اللوجستية للموانئ للشحنات الدولية، مما يضمن وصول سيارتك في حالة ممتازة.",
-                "image": "/images/hero_silver_supercar.jpg"
+                "image": "images/hero_silver_supercar.jpg"
             },
             {
                 "label": "الحفاظ",
                 "title": "صيانة الأداء",
                 "desc": "تتطلب صيانة السيارة الخارقة أكثر من مجرد عناية قياسية؛ فهي تتطلب خبرة متخصصة. توفر شبكة الفنيين الرئيسيين لدينا صيانة شاملة، وضبط الأداء، وخدمات تفصيلية من الدرجة الأرشيفية خصيصاً للماركات الغريبة والكلاسيكية.",
-                "image": "/images/porsche_911.jpg"
+                "image": "images/porsche_911.jpg"
             },
             {
                 "label": "الاستحواذ",
                 "title": "التوريد حسب الطلب",
                 "desc": "إذا لم تكن السيارة التي ترغب فيها موجودة في مجموعتنا الحالية، فسنجدها لك. من خلال الاستفادة من شبكة عالمية من المقتنيين الخاصين والقوائم خارج السوق، نقوم بتحديد وفحص والتفاوض على شراء أكثر السيارات رواجاً في العالم نيابة عنك.",
-                "image": "/images/aston_martin_dbs.jpg"
+                "image": "images/aston_martin_dbs.jpg"
             },
             {
                 "label": "الوساطة",
                 "title": "نخبة الإرسالية",
                 "desc": "بع سيارتك بالهيبة التي تستحقها. يشمل برنامج الإرسالية لدينا تصويراً احترافياً في الاستوديو، وتسويقاً متعدد القنوات للمشترين المؤهلين ذوي الملاءة المالية العالية، وإدارة كاملة للاستفسارات والمشاهدات في معرضنا الآمن.",
-                "image": "/images/ferrari_sf90.jpg"
+                "image": "images/ferrari_sf90.jpg"
             }
         ],
         "cta": {
@@ -258,7 +258,7 @@
       "year": 2023,
       "mileage": "1,200 mi",
       "price": 25000000,
-      "image": "/images/ferrari_sf90.jpg",
+      "image": "images/ferrari_sf90.jpg",
       "tag": "justArrived"
     },
     {
@@ -268,7 +268,7 @@
       "year": 2022,
       "mileage": "3,450 mi",
       "price": 18000000,
-      "image": "/images/mclaren_720s.jpg"
+      "image": "images/mclaren_720s.jpg"
     },
     {
       "id": 3,
@@ -277,7 +277,7 @@
       "year": 2021,
       "mileage": "500 mi",
       "price": 22000000,
-      "image": "/images/lamborghini_aventador.jpg"
+      "image": "images/lamborghini_aventador.jpg"
     },
      {
       "id": 4,
@@ -286,7 +286,7 @@
       "year": 2023,
       "mileage": "120 mi",
       "price": 15000000,
-      "image": "/images/porsche_911.jpg"
+      "image": "images/porsche_911.jpg"
     },
     {
       "id": 5,
@@ -295,7 +295,7 @@
       "year": 2022,
       "mileage": "2,100 mi",
       "price": 12000000,
-      "image": "/images/aston_martin_dbs.jpg"
+      "image": "images/aston_martin_dbs.jpg"
     },
     {
       "id": 6,
@@ -304,7 +304,7 @@
       "year": 2020,
       "mileage": "900 mi",
       "price": 150000000,
-      "image": "/images/bugatti_chiron.jpg",
+      "image": "images/bugatti_chiron.jpg",
       "tag": "rareFind"
     }
   ],
@@ -312,22 +312,22 @@
       {
           "name": "Arthur Sterling",
           "role": { "en": "Founder & Chief Curator", "ar": "المؤسس والمنسق الرئيسي" },
-          "image": "/images/team_arthur.jpg"
+          "image": "images/team_arthur.jpg"
       },
       {
           "name": "Jameson Vance",
           "role": { "en": "Director of Acquisitions", "ar": "مدير الاستحواذ" },
-          "image": "/images/team_jameson.jpg"
+          "image": "images/team_jameson.jpg"
       },
       {
           "name": "Eleanor Rossi",
           "role": { "en": "Historical Consultant", "ar": "مستشار تاريخي" },
-          "image": "/images/team_eleanor.jpg"
+          "image": "images/team_eleanor.jpg"
       },
       {
           "name": "Marcus Thorne",
           "role": { "en": "Concierge Specialist", "ar": "أخصائي كونسيرج" },
-          "image": "/images/team_marcus.jpg"
+          "image": "images/team_marcus.jpg"
       }
   ]
-}
+};
