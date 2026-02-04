@@ -29,7 +29,7 @@ function Hero({ t }) {
     );
 }
 
-function Inventory({ t, cars, settings, currency, lang }) {
+function Inventory({ t, cars, settings, currency, lang, onCarClick }) {
     const currencyLabel = currency === 'USD' ? settings.currencyLabelUSD[lang] : settings.currencyLabel[lang];
 
     return h('section', { className: "mx-auto max-w-7xl px-6 py-24 lg:px-12" },
@@ -50,7 +50,11 @@ function Inventory({ t, cars, settings, currency, lang }) {
                 const priceVal = car.price * rate;
                 const formattedPrice = new Intl.NumberFormat(lang === 'ar' ? 'ar-EG' : 'en-US').format(priceVal);
 
-                return h('article', { key: car.id, className: "group flex flex-col gap-4 cursor-pointer" },
+                return h('article', {
+                    key: car.id,
+                    className: "group flex flex-col gap-4 cursor-pointer",
+                    onClick: () => onCarClick(car.id)
+                },
                     h('div', { className: "relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-gray-200" },
                         h('div', {
                             className: "h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105",
@@ -69,6 +73,97 @@ function Inventory({ t, cars, settings, currency, lang }) {
                     )
                 );
             })
+        )
+    );
+}
+
+function CarDetails({ car, t, settings, currency, lang, onBack }) {
+    if (!car) return null;
+
+    const isUSD = currency === 'USD';
+    const rate = isUSD ? settings.exchangeRate : 1;
+    const priceVal = car.price * rate;
+    const formattedPrice = new Intl.NumberFormat(lang === 'ar' ? 'ar-EG' : 'en-US').format(priceVal);
+    const currencyLabel = isUSD ? settings.currencyLabelUSD[lang] : settings.currencyLabel[lang];
+
+    // Helper for spec item
+    const SpecItem = ({ icon, label, value }) => (
+        h('div', { className: "flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-[#221d10] border border-[#e6e3db] dark:border-[#3a352a]" },
+            h('div', { className: "p-3 rounded-full bg-primary/10 text-primary" },
+                h(Icon, { name: icon, className: "text-2xl" })
+            ),
+            h('div', {},
+                h('div', { className: "text-xs font-bold uppercase tracking-wider text-[#897f61]" }, label),
+                h('div', { className: "font-bold text-[#181611] dark:text-white mt-1 ltr:font-sans" }, value) // Force sans-serif for numbers in LTR if needed, but display font handles it
+            )
+        )
+    );
+
+    return h('div', { className: "animate-fade-in" },
+        // Hero Image
+        h('div', { className: "relative w-full h-[60vh] bg-gray-200" },
+            h('div', {
+                className: "absolute inset-0 bg-cover bg-center",
+                style: { backgroundImage: `url('${car.image}')` }
+            }),
+            h('div', { className: "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" }),
+            h('div', { className: "absolute bottom-0 left-0 w-full p-6 lg:p-12" },
+                h('div', { className: "mx-auto max-w-7xl" },
+                    h('button', {
+                        onClick: onBack,
+                        className: "mb-6 flex items-center gap-2 text-white/80 hover:text-white hover:underline transition-all text-sm font-bold uppercase tracking-widest"
+                    },
+                        h(Icon, { name: lang === 'ar' ? "arrow_forward" : "arrow_back" }),
+                        t.details.back
+                    ),
+                    h('h1', { className: "text-4xl md:text-6xl font-bold text-white mb-2" }, `${car.make} ${car.model}`),
+                    h('div', { className: "flex items-center gap-4 text-xl md:text-2xl text-primary font-medium" },
+                         h('span', {}, `${formattedPrice} ${currencyLabel}`)
+                    )
+                )
+            )
+        ),
+
+        // Content Section
+        h('section', { className: "mx-auto max-w-7xl px-6 py-12 lg:px-12" },
+            h('div', { className: "grid grid-cols-1 lg:grid-cols-3 gap-12" },
+                // Main Info
+                h('div', { className: "lg:col-span-2 space-y-12" },
+                    h('div', {},
+                        h('h2', { className: "text-2xl font-bold text-[#181611] dark:text-white mb-6" }, t.details.specs),
+                        h('div', { className: "grid grid-cols-1 md:grid-cols-2 gap-4" },
+                            h(SpecItem, { icon: "speed", label: t.details.acceleration, value: car.specs.acceleration }),
+                            h(SpecItem, { icon: "flight", label: t.details.topSpeed, value: car.specs.topSpeed }),
+                            h(SpecItem, { icon: "bolt", label: t.details.power, value: car.specs.power }),
+                            h(SpecItem, { icon: "settings", label: t.details.engine, value: car.specs.engine }),
+                            h(SpecItem, { icon: "directions_car", label: t.details.drivetrain, value: car.specs.drivetrain }),
+                            h(SpecItem, { icon: "calendar_today", label: t.details.year, value: car.year }),
+                            h(SpecItem, { icon: "add_road", label: t.details.mileage, value: car.mileage }),
+                        )
+                    ),
+                    h('div', {},
+                        h('h3', { className: "text-xl font-bold text-[#181611] dark:text-white mb-4" }, "Description"),
+                        h('p', { className: "text-lg text-[#897f61] dark:text-[#a8a290] leading-relaxed" }, car.description)
+                    )
+                ),
+
+                // Sidebar / Sticky Action
+                h('div', {},
+                    h('div', { className: "sticky top-32 p-8 rounded-2xl bg-white dark:bg-[#1a160d] border border-[#e6e3db] dark:border-[#3a352a] shadow-lg" },
+                        h('div', { className: "text-center mb-8" },
+                            h('div', { className: "text-sm text-[#897f61] uppercase tracking-widest mb-2" }, "Price"),
+                            h('div', { className: "text-3xl font-bold text-[#181611] dark:text-white" }, `${formattedPrice} ${currencyLabel}`)
+                        ),
+                        h('button', { className: "w-full py-4 bg-primary text-[#181611] font-bold rounded-lg shadow-xl shadow-primary/10 hover:bg-[#d4a311] transition-all transform active:scale-[0.98] uppercase tracking-widest text-sm mb-4" },
+                            t.details.inquire
+                        ),
+                         h('div', { className: "flex justify-center gap-4 text-[#897f61]" },
+                            h('button', { className: "p-2 hover:text-primary transition-colors" }, h(Icon, { name: "favorite_border" })),
+                            h('button', { className: "p-2 hover:text-primary transition-colors" }, h(Icon, { name: "share" }))
+                         )
+                    )
+                )
+            )
         )
     );
 }
@@ -322,6 +417,7 @@ function App() {
     const [lang, setLang] = useState('en');
     const [currency, setCurrency] = useState('LE'); // 'LE' or 'USD'
     const [page, setPage] = useState('home');
+    const [selectedCarId, setSelectedCarId] = useState(null);
 
     // Derived content based on language
     const t = CONTENT[lang];
@@ -353,6 +449,17 @@ function App() {
 
     const toggleCurrency = () => {
         setCurrency(prev => prev === 'LE' ? 'USD' : 'LE');
+    };
+
+    const handleCarClick = (id) => {
+        setSelectedCarId(id);
+        setPage('details');
+        window.scrollTo(0, 0);
+    };
+
+    const handleBack = () => {
+        setPage('inventory');
+        setSelectedCarId(null);
     };
 
     // Nav Component (Inner to access state)
@@ -404,10 +511,18 @@ function App() {
         h('main', { className: "flex-grow" },
             page === 'home' && h(React.Fragment, null,
                 h(Hero, { t }),
-                h(Inventory, { t, cars: CONTENT.cars, settings: CONTENT.settings, currency, lang }),
+                h(Inventory, { t, cars: CONTENT.cars, settings: CONTENT.settings, currency, lang, onCarClick: handleCarClick }),
                 h(Services, { t })
             ),
-             page === 'inventory' && h(Inventory, { t, cars: CONTENT.cars, settings: CONTENT.settings, currency, lang }),
+             page === 'inventory' && h(Inventory, { t, cars: CONTENT.cars, settings: CONTENT.settings, currency, lang, onCarClick: handleCarClick }),
+             page === 'details' && h(CarDetails, {
+                car: CONTENT.cars.find(c => c.id === selectedCarId),
+                t,
+                settings: CONTENT.settings,
+                currency,
+                lang,
+                onBack: handleBack
+             }),
              page === 'services' && h(ServicesPage, { t }),
              page === 'about' && h(About, { t, team: CONTENT.team, lang }),
              page === 'contact' && h(Contact, { t })
