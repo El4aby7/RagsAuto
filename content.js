@@ -38,6 +38,18 @@ export const CONTENT = {
             "reset": "Reset Filters"
         }
     },
+    "details": {
+        "back": "Back to Inventory",
+        "inquire": "Inquire About This Vehicle",
+        "specs": "Specifications",
+        "engine": "Engine",
+        "power": "Power",
+        "acceleration": "0-60 mph",
+        "topSpeed": "Top Speed",
+        "drivetrain": "Drivetrain",
+        "mileage": "Mileage",
+        "year": "Year"
+    },
     "services": {
         "label": "The Rags Standard",
         "title": "Experience a level of service as exceptional as the vehicles we curate.",
@@ -161,6 +173,18 @@ export const CONTENT = {
             "reset": "إعادة تعيين"
         }
     },
+    "details": {
+        "back": "العودة للمخزون",
+        "inquire": "استفسر عن هذه السيارة",
+        "specs": "المواصفات",
+        "engine": "المحرك",
+        "power": "القوة",
+        "acceleration": "0-100 كم/س",
+        "topSpeed": "السرعة القصوى",
+        "drivetrain": "نظام الدفع",
+        "mileage": "المسافة المقطوعة",
+        "year": "السنة"
+    },
     "services": {
         "label": "معيار راغز",
         "title": "اختبر مستوى من الخدمة استثنائي كالسيارات التي نقتنيها.",
@@ -259,7 +283,15 @@ export const CONTENT = {
       "mileage": "1,200 mi",
       "price": 25000000,
       "image": "images/ferrari_sf90.jpg",
-      "tag": "justArrived"
+      "tag": "justArrived",
+      "description": "The SF90 Stradale is the first ever Ferrari featuring PHEV (Plug-in Hybrid Electric Vehicle) architecture which sees the internal combustion engine integrated with three electric motors.",
+      "specs": {
+        "engine": "4.0L Twin-Turbo V8 + 3 Electric Motors",
+        "power": "986 hp",
+        "acceleration": "2.5s",
+        "topSpeed": "211 mph",
+        "drivetrain": "AWD"
+      }
     },
     {
       "id": 2,
@@ -268,7 +300,15 @@ export const CONTENT = {
       "year": 2022,
       "mileage": "3,450 mi",
       "price": 18000000,
-      "image": "images/mclaren_720s.jpg"
+      "image": "images/mclaren_720s.jpg",
+      "description": "A convertible supercar that delivers the same blistering performance as the coupe, with the added thrill of open-air driving.",
+      "specs": {
+        "engine": "4.0L Twin-Turbo V8",
+        "power": "710 hp",
+        "acceleration": "2.8s",
+        "topSpeed": "212 mph",
+        "drivetrain": "RWD"
+      }
     },
     {
       "id": 3,
@@ -277,7 +317,15 @@ export const CONTENT = {
       "year": 2021,
       "mileage": "500 mi",
       "price": 22000000,
-      "image": "images/lamborghini_aventador.jpg"
+      "image": "images/lamborghini_aventador.jpg",
+      "description": "The Aventador SVJ is the pinnacle of the V12 Lamborghini family, featuring advanced aerodynamics and record-breaking performance.",
+      "specs": {
+        "engine": "6.5L Naturally Aspirated V12",
+        "power": "759 hp",
+        "acceleration": "2.8s",
+        "topSpeed": "217 mph",
+        "drivetrain": "AWD"
+      }
     },
      {
       "id": 4,
@@ -286,7 +334,15 @@ export const CONTENT = {
       "year": 2023,
       "mileage": "120 mi",
       "price": 15000000,
-      "image": "images/porsche_911.jpg"
+      "image": "images/porsche_911.jpg",
+      "description": "A road-legal race car with sophisticated aerodynamics and motorsport-derived technology for ultimate track performance.",
+      "specs": {
+        "engine": "4.0L Flat-6",
+        "power": "518 hp",
+        "acceleration": "3.0s",
+        "topSpeed": "184 mph",
+        "drivetrain": "RWD"
+      }
     },
     {
       "id": 5,
@@ -295,7 +351,15 @@ export const CONTENT = {
       "year": 2022,
       "mileage": "2,100 mi",
       "price": 12000000,
-      "image": "images/aston_martin_dbs.jpg"
+      "image": "images/aston_martin_dbs.jpg",
+      "description": "A Super GT that blends brutal power with unmatched elegance, offering a refined yet exhilarating driving experience.",
+      "specs": {
+        "engine": "5.2L Twin-Turbo V12",
+        "power": "715 hp",
+        "acceleration": "3.2s",
+        "topSpeed": "211 mph",
+        "drivetrain": "RWD"
+      }
     },
     {
       "id": 6,
@@ -305,7 +369,15 @@ export const CONTENT = {
       "mileage": "900 mi",
       "price": 150000000,
       "image": "images/bugatti_chiron.jpg",
-      "tag": "rareFind"
+      "tag": "rareFind",
+      "description": "An engineering masterpiece representing the ultimate in power, speed, and luxury. A hypercar beyond conventions.",
+      "specs": {
+        "engine": "8.0L Quad-Turbo W16",
+        "power": "1479 hp",
+        "acceleration": "2.4s",
+        "topSpeed": "261 mph",
+        "drivetrain": "AWD"
+      }
     }
   ],
   "team": [
