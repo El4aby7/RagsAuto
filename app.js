@@ -418,6 +418,7 @@ function App() {
     const [currency, setCurrency] = useState('LE'); // 'LE' or 'USD'
     const [page, setPage] = useState('home');
     const [selectedCarId, setSelectedCarId] = useState(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     // Derived content based on language
     const t = CONTENT[lang];
@@ -431,6 +432,16 @@ function App() {
             root.classList.remove('dark');
         }
     }, [theme]);
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => { document.body.style.overflow = 'unset'; };
+    }, [mobileMenuOpen]);
 
     // Effect for Language (Direction)
     useEffect(() => {
@@ -462,12 +473,52 @@ function App() {
         setSelectedCarId(null);
     };
 
+    const handleMobileNav = (targetPage) => {
+        setPage(targetPage);
+        setMobileMenuOpen(false);
+    };
+
+    // Mobile Menu Component
+    function MobileMenu() {
+        if (!mobileMenuOpen) return null;
+
+        return h('div', { className: "fixed inset-0 z-40 bg-white dark:bg-[#1a160d] md:hidden animate-fade-in flex flex-col pt-24 px-6" },
+            h('nav', { className: "flex flex-col gap-6 text-2xl font-bold text-[#181611] dark:text-white" },
+                h('button', { onClick: () => handleMobileNav('home'), className: "text-left hover:text-primary" }, "Home"),
+                h('button', { onClick: () => handleMobileNav('inventory'), className: "text-left hover:text-primary" }, t.nav.inventory),
+                h('button', { onClick: () => handleMobileNav('services'), className: "text-left hover:text-primary" }, t.nav.services),
+                h('button', { onClick: () => handleMobileNav('about'), className: "text-left hover:text-primary" }, t.nav.about),
+                h('button', { onClick: () => handleMobileNav('contact'), className: "text-left hover:text-primary" }, t.nav.contact)
+            ),
+            h('div', { className: "mt-12 flex flex-col gap-6 border-t border-[#e6e3db] dark:border-[#3a352a] pt-8" },
+                h('div', { className: "flex items-center justify-between" },
+                    h('span', { className: "text-[#897f61]" }, "Currency"),
+                    h('button', { onClick: toggleCurrency, className: "font-bold text-[#181611] dark:text-white hover:text-primary" }, currency)
+                ),
+                h('div', { className: "flex items-center justify-between" },
+                    h('span', { className: "text-[#897f61]" }, "Language"),
+                    h('button', { onClick: toggleLang, className: "font-bold text-[#181611] dark:text-white hover:text-primary" }, lang === 'en' ? 'Arabic' : 'English')
+                ),
+                h('div', { className: "flex items-center justify-between" },
+                    h('span', { className: "text-[#897f61]" }, "Theme"),
+                    h('button', { onClick: toggleTheme, className: "flex items-center gap-2 font-bold text-[#181611] dark:text-white hover:text-primary" },
+                        theme === 'light' ? 'Dark Mode' : 'Light Mode',
+                        h(Icon, { name: theme === 'light' ? 'dark_mode' : 'light_mode' })
+                    )
+                ),
+                h('button', { className: "mt-4 w-full py-4 bg-primary text-[#181611] font-bold rounded-lg shadow-lg uppercase tracking-widest text-sm" },
+                    t.nav.inquire
+                )
+            )
+        );
+    }
+
     // Nav Component (Inner to access state)
     function Header() {
         return h('header', { className: "sticky top-0 z-50 w-full border-b border-[#e6e3db] dark:border-[#3a352a] bg-white/90 dark:bg-[#221d10]/90 backdrop-blur-md px-6 py-4 lg:px-12" },
             h('div', { className: "mx-auto flex max-w-7xl items-center justify-between" },
                 // Logo
-                h('div', { className: "flex items-center gap-3 cursor-pointer", onClick: () => setPage('home') },
+                h('div', { className: "flex items-center gap-3 cursor-pointer", onClick: () => handleMobileNav('home') },
                     h('div', { className: "flex items-center justify-center text-primary" },
                         h(Icon, { name: "directions_car", className: "text-[32px]" })
                     ),
@@ -499,8 +550,11 @@ function App() {
                     )
                 ),
                  // Mobile Menu Icon
-                h('div', { className: "md:hidden text-[#181611] dark:text-white" },
-                    h(Icon, { name: "menu", className: "text-3xl" })
+                h('button', {
+                    onClick: () => setMobileMenuOpen(!mobileMenuOpen),
+                    className: "md:hidden text-[#181611] dark:text-white p-2"
+                },
+                    h(Icon, { name: mobileMenuOpen ? "close" : "menu", className: "text-3xl" })
                 )
             )
         );
@@ -508,6 +562,7 @@ function App() {
 
     return h('div', { className: "relative flex min-h-screen w-full flex-col overflow-x-hidden" },
         h(Header),
+        h(MobileMenu),
         h('main', { className: "flex-grow" },
             page === 'home' && h(React.Fragment, null,
                 h(Hero, { t }),
